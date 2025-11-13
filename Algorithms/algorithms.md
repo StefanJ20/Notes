@@ -9,15 +9,15 @@ An array is initialized by 'let myList = [];
 
 Here are some common use case functions for arrays.
 
-# push(): Adds one or more elements to the end of the array.
-# pop(): Removes the last element from the array and returns it.
-# shift(): Removes the first element from the array and returns it.
-# unshift(): Adds one or more elements to the beginning of the array.
-# splice(): Changes the contents of an array by removing or replacing existing elements and/or adding new elements.
-# slice(): Returns a shallow copy of a portion of an array into a new array object.
-# indexOf(): Returns the first index at which a given element can be found in the array.
-# includes(): Determines whether an array includes a certain value among its entries.
-# forEach(), map(), filter(), reduce(): Higher-order functions for iterating and transforming array elements.
+push(): Adds one or more elements to the end of the array.
+pop(): Removes the last element from the array and returns it.
+shift(): Removes the first element from the array and returns it.
+unshift(): Adds one or more elements to the beginning of the array.
+splice(): Changes the contents of an array by removing or replacing existing elements and/or adding new elements.
+slice(): Returns a shallow copy of a portion of an array into a new array object.
+indexOf(): Returns the first index at which a given element can be found in the array.
+includes(): Determines whether an array includes a certain value among its entries.
+forEach(), map(), filter(), reduce(): Higher-order functions for iterating and transforming array elements.
 
 ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### 
 
