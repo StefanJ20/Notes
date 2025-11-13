@@ -1,0 +1,1 @@
+This repository contains all the note files I've taken with the work I've done. This is for my personal better understanding of algorithms and coding processes, but its public so the world can feel free to peep my notes.
