@@ -5,10 +5,9 @@
 
 This is a simple array element that is dynamic, mutable, resizable, and can be accessed randomly. all of this means you can map values and pull them from their direct index with a simple request. 
 
-An array is initialized by 'let myList = [];
+An array is initialized by `let myList = [];`. Here are some common use case functions for arrays.
 
-Here are some common use case functions for arrays.
-
+```
 push(): Adds one or more elements to the end of the array.
 pop(): Removes the last element from the array and returns it.
 shift(): Removes the first element from the array and returns it.
@@ -19,7 +18,8 @@ indexOf(): Returns the first index at which a given element can be found in the 
 includes(): Determines whether an array includes a certain value among its entries.
 forEach(), map(), filter(), reduce(): Higher-order functions for iterating and transforming array elements.
 
-###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### ###### 
+```
+###### 
 
 # Singly Linked List # 
 
@@ -35,7 +35,6 @@ Heres how we construct a list from its first node. We define the node, initializ
 #####
 
 ```javascript
-
 
     class Node {
       constructor(value) {
@@ -210,7 +209,7 @@ class Node {
 
 # Stack (arrays) #
 
-A stack is a linear data structure that follows the Last-in-First-out Principle (LIFO). It can be implemented and treated as an array, except your operations happen at the bottom of the stack, hence the Last In First Out property. 
+A stack is a linear data structure that follows the Last-in-First-out Principle `(LIFO)`. It can be implemented and treated as an array, except your operations happen at the bottom of the stack, hence the Last In First Out property. 
 
 ```javascript
 class myStack {
@@ -260,7 +259,7 @@ class myStack {
 
 # Stack (Linked-list) #
 
-Similar to the array stack, this stack is Last-In-First-Out ordered. (LIFO). Differently, this form of linear data structure has no size implementation, and therefore is dynamically flexible until physical memory runs out. A stack with a linked list can be implemented by initializing a Node with a constructor for its data. Then, you can create the stack class with an empty initial constructor, where you can later on implement new Nodes.
+Similar to the array stack, this stack is Last-In-First-Out ordered. `(LIFO)`. Differently, this form of linear data structure has no size implementation, and therefore is dynamically flexible until physical memory runs out. A stack with a linked list can be implemented by initializing a Node with a constructor for its data. Then, you can create the stack class with an empty initial constructor, where you can later on implement new Nodes.
 
 #####
 
@@ -318,7 +317,7 @@ class myStack {
 
 # Queue (Array) #
 
-A queue is a data structure that follows the First-In-First-Out principle in computer science (FIFO). We're initializing a class with a constructor that has a capacity, as all arrays need a capacity. 
+A queue is a data structure that follows the First-In-First-Out principle in computer science `(FIFO)`. We're initializing a class with a constructor that has a capacity, as all arrays need a capacity. 
 
 ```javascript
 class myQueue {
@@ -378,7 +377,7 @@ class myQueue {
 
 # Queue (Linked-List) #
 
-A queue as a Linked-List functions similarly to a stack as a linked list, except they follow very different properties. These queues are dynamic, meaning they can be infinitely changed until memory runs out. They are mutable, and follow the First-In-First-Out Principle (FIFO).
+A queue as a Linked-List functions similarly to a stack as a linked list, except they follow very different properties. These queues are dynamic, meaning they can be infinitely changed until memory runs out. They are mutable, and follow the First-In-First-Out Principle `(FIFO)`.
 
 ```javascript
 
@@ -564,7 +563,7 @@ class Deque() {
 
 ##### Kadane's Algorithm #####
 
-Kadane's algorithm returns the maximum sum of a contiguous subarray. This means an array nested within an array. This algorithm is taking a subset of integer
+Kadane's algorithm returns the maximum sum of a contiguous subarray. This means an `array nested within an array`. This algorithm is taking a subset of integer
 values within the array, testing them against each other to find the subarray with the maximum sum instide of it.
 
 In this example, were passing in a parameter nums thats the parent array. We define two arrays. The Max found so far, and the current maximum from add operations.
