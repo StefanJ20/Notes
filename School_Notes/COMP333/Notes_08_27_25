@@ -1,0 +1,16 @@
+OOP (Minimal Definition)
+    - Objects contain fields holding data
+    - Objects can pass messages to each other.
+ 
+OOP (explicit methods)
+    - Objects contain fields holding data and methods holding executable procedures
+    - Objects an call methods on other objects/ have their methods called on.
+
+Virtual Dispatch:
+    - AKA dynamic dispatch, polymorphism
+    - The method/code actually called is determined at runtime.
+
+    Polymorphisms:
+        - ad-hoc Polymorphism
+        - Subtyping Polymorphism
+        - Parametric Polymorphism   

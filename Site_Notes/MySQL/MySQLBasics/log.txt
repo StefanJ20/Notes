@@ -1,0 +1,44 @@
+mysql> SELECT * FROM transactions INNER JOIN customers ON transactions.customer_id = customers.id;
++----------------+-------------+--------+---------------------+----+--------------+-------------------------+---------------------+
+| transaction_id | customer_id | amount | Transacted_at       | id | name         | email                   | created_at          |
++----------------+-------------+--------+---------------------+----+--------------+-------------------------+---------------------+
+|           1000 |           1 |   4.99 | 2025-07-04 15:26:53 |  1 | James        | squidward@gmail.com     | 2025-07-04 15:06:10 |
+|           1001 |           2 |   8.99 | 2025-07-04 15:26:53 |  2 | Gomez        | HankSchrader@gmail.com  | 2025-07-04 15:06:27 |
+|           1002 |           3 |   1.99 | 2025-07-04 15:26:53 |  3 | Petite Frank | HolyFuckLouis@yahoo.com | 2025-07-04 15:06:51 |
+|           1003 |           4 |  99.25 | 2025-07-04 15:26:53 |  4 | John         | PorkedIt@hotmail.org    | 2025-07-04 15:07:14 |
++----------------+-------------+--------+---------------------+----+--------------+-------------------------+---------------------+
+4 rows in set (0.001 sec)
+
+mysql> SELECT transaction_id, amount, name, email  FROM transactions INNER JOIN customers ON transactions.customer_id = customers.id;
++----------------+--------+--------------+-------------------------+
+| transaction_id | amount | name         | email                   |
++----------------+--------+--------------+-------------------------+
+|           1000 |   4.99 | James        | squidward@gmail.com     |
+|           1001 |   8.99 | Gomez        | HankSchrader@gmail.com  |
+|           1002 |   1.99 | Petite Frank | HolyFuckLouis@yahoo.com |
+|           1003 |  99.25 | John         | PorkedIt@hotmail.org    |
++----------------+--------+--------------+-------------------------+
+4 rows in set (0.000 sec)
+
+mysql> SELECT * FROM transactions LEFT JOIN customers ON transactions.customer_id = customers.id;
++----------------+-------------+--------+---------------------+------+--------------+-------------------------+---------------------+
+| transaction_id | customer_id | amount | Transacted_at       | id   | name         | email                   | created_at          |
++----------------+-------------+--------+---------------------+------+--------------+-------------------------+---------------------+
+|           1000 |           1 |   4.99 | 2025-07-04 15:26:53 |    1 | James        | squidward@gmail.com     | 2025-07-04 15:06:10 |
+|           1001 |           2 |   8.99 | 2025-07-04 15:26:53 |    2 | Gomez        | HankSchrader@gmail.com  | 2025-07-04 15:06:27 |
+|           1002 |           3 |   1.99 | 2025-07-04 15:26:53 |    3 | Petite Frank | HolyFuckLouis@yahoo.com | 2025-07-04 15:06:51 |
+|           1003 |           4 |  99.25 | 2025-07-04 15:26:53 |    4 | John         | PorkedIt@hotmail.org    | 2025-07-04 15:07:14 |
+|           1004 |        NULL |   2.99 | 2025-07-04 15:45:25 | NULL | NULL         | NULL                    | NULL                |
++----------------+-------------+--------+---------------------+------+--------------+-------------------------+---------------------+
+5 rows in set (0.000 sec)
+
+mysql> SELECT * FROM transactions RIGHT JOIN customers ON transactions.customer_id = customers.id;
++----------------+-------------+--------+---------------------+----+--------------+-------------------------+---------------------+
+| transaction_id | customer_id | amount | Transacted_at       | id | name         | email                   | created_at          |
++----------------+-------------+--------+---------------------+----+--------------+-------------------------+---------------------+
+|           1000 |           1 |   4.99 | 2025-07-04 15:26:53 |  1 | James        | squidward@gmail.com     | 2025-07-04 15:06:10 |
+|           1001 |           2 |   8.99 | 2025-07-04 15:26:53 |  2 | Gomez        | HankSchrader@gmail.com  | 2025-07-04 15:06:27 |
+|           1002 |           3 |   1.99 | 2025-07-04 15:26:53 |  3 | Petite Frank | HolyFuckLouis@yahoo.com | 2025-07-04 15:06:51 |
+|           1003 |           4 |  99.25 | 2025-07-04 15:26:53 |  4 | John         | PorkedIt@hotmail.org    | 2025-07-04 15:07:14 |
++----------------+-------------+--------+---------------------+----+--------------+-------------------------+---------------------+
+4 rows in set (0.000 sec)
