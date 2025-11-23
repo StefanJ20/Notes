@@ -204,6 +204,89 @@ class Node {
         this.next = null;
     }
 }
+
+class circularList {
+    constructor() {
+        this.head = this.tail = null;
+        this.length = 0;
+    }
+
+    add(data) {
+        const newNode = new Node(data);
+        if (!this.head) {
+            this.head = this.tail = newNode;
+            newNode.next = this.head;
+        } else {
+            this.tail.next = newNode;
+            this.tail = newNode;
+            this.tail.next = this.head;
+        }
+        this.length++;
+    }
+
+    traverse() {
+        if (!this.head) {
+            console.log("Empty List");
+            return;
+        }
+        let curr = this.head;
+        let results = []
+        do {
+            results.push(curr.data);
+            curr = curr.next;
+        } while (curr !=== this.head);
+        console.log(results.join(" -> "))
+    }
+
+    find(data) {
+        if (!this.head) {
+          return null;
+        }
+        let current = this.head;
+        do {
+          if (current.data === data) {
+            return current;
+          }
+          current = current.next;
+        } while (current !== this.head);
+        return null; 
+    }
+
+    remove(data) {
+        if (!this.head) {
+          return false;
+        }
+
+        if (this.head.data === data) {
+            if (this.head === this.tail) { 
+                this.head = null;
+                this.tail = null;
+            } else {
+                this.head = this.head.next;
+                this.tail.next = this.head; 
+            }
+        this.length--;
+        return true;
+        }
+
+        let current = this.head;
+        let prev = null;
+        do {
+            prev = current;
+            current = current.next;
+            if (current.data === data) {
+                prev.next = current.next;
+            if (current === this.tail) { 
+                this.tail = prev;
+            }
+            this.length--;
+            return true;
+            }
+        } while (current !== this.head); 
+    return false; 
+    }
+}
+
 ```
 #####
 
@@ -213,9 +296,7 @@ A stack is a linear data structure that follows the Last-in-First-out Principle 
 
 ```javascript
 class myStack {
-
     constructor(cap) {
-        
         this.arr = new Array(cap);
         this.capacity = cap;
         this.top = -1;
@@ -381,14 +462,14 @@ A queue as a Linked-List functions similarly to a stack as a linked list, except
 
 ```javascript
 
-class Node() {
+class Node {
     constructor(newData) {
         this.data = newData;
         this.next = null;
     }
 }
 
-class Queue() {
+class Queue {
     constructor() {
         this.front = this.rear = null;
         currSize = 0;
@@ -448,7 +529,7 @@ A deque is a data structure that allows you to make insertions and deletions fro
 
 ```javascript
 
-class Deque() {
+class Deque {
     constructor() {
         this.dq = [];
     }
@@ -500,7 +581,7 @@ A deque as a linked list is a more efficient version of a deque in an array, as 
 
 ```javascript
 
-class Node() {
+class Node {
     constructor(data) {
         this.data = data;
         this.next = null;
@@ -508,7 +589,7 @@ class Node() {
     }
 }
 
-class Deque() {
+class Deque {
     constructor() {
         this.front = this.rear = null;
         this.size = 0;
@@ -549,7 +630,6 @@ class Deque() {
     deleteFront() {
         if (this.isEmpty()) {
             console.log("Deque Underflow")
-            return -1;
         } else {
             this.front = this.front.next;
             if (this.front) this.front.prev = null;
@@ -557,11 +637,164 @@ class Deque() {
             this.size--;
         }
     }
+
+    deleteRear() {
+        if (this.isEmpty()) {
+            console.log("Deque Underflow")
+        } else {
+            this.rear = this.rear.prev;
+            if (this.rear) this.rear.next = null;
+            else this.front = null;
+            this.size--;
+        }
+    }
+
+    getFront() {
+        return this.isEmpty() ? -1 : this.front.data;
+    }
+
+    getRear() {
+        return this.isEmpty() ? -1 : this.rear.data;
+    }
+    
+    erase() {
+        while (!this.isEmpty()) this.deleteFront();
+    }
+    
+    display () {
+        let frnt = this.front; 
+        let output = "";
+        while (frnt !== null) {
+            output += frnt.data + " ";
+            frnt = frnt.next;
+        }
+        console.log(output.trim());
+    }
 }
 
 ```
 
-##### Kadane's Algorithm #####
+#####
+
+# Binary Search Tree (BST) #
+
+A binary search tree is an organized data structure that orders values by nodes, left if the node is less than its parent node, right if its greater than its parent node. A binary search tree has O(n), because the tree has to search through every individual element. The runtime would be more efficient if the tree self balanced like that of an AVL Tree. 
+
+```javascript
+
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.left = this.right = null;
+    }
+}
+
+class BST {
+    constructor() {
+        this.root = null;
+    }
+    
+    insertValue(data) {
+        newNode = new Node(data);
+        if (this.root === null) {
+            this.root = newNode;
+        } else {
+            this.insertNode(this.root, newNode);
+        }   
+    }
+
+}
+
+```
+#####
+
+# Binary Search Algorithm #
+
+A binary search algorithm utilizes a sorted list of elements, divides the list in half, and works its way in a divided manner until it finds the indexed search result. Access to any element of the array should be constant time. This search algorithm starts with searching the middle index. If the searched element isn't found within the middle index, we find if the element we're searching for is greater than or less the selected element. If it is, we search the right side of the list. If not, we search the left. We continue this process until we reach our goal.
+
+```javascript
+
+function binarySearch(arr, x) {
+    let low = 0;
+    let mid;
+    let high = arr.length - 1;
+
+    while (high >= low) {
+        mid = low + Math.floor((high - low) / 2);
+
+        if (arr[mid] == x) {
+            return mid;
+        }
+
+        if (arr[mid] > x) {
+            high = mid - 1;
+        }
+
+        if (arr[mid] < x) {
+            low = mid + 1;
+        }
+    }
+    return -1;
+}
+
+```
+
+#####
+
+# Merge Sort #
+
+Merge sort is an `(O(log n))` sorting algorithm that takes an existing arrays, divides it into multiple subarrays and conquers by sorting the divided values into a new array. The steps are as follow: Divide; you divide the array into subarrays with individual elements. Conquer; you check to see if the elements are properly sorted within their subarrays, if not you sort them into the new merged array. Merge; all elements are pushed into a new array. 
+
+```javascript
+
+function merge(arr, left, mid, right) {
+
+    let n1 = mid - left + 1; //leftmost part of the array
+    let n2 = right - mid; //rightmost part of the array
+
+    const L = new Array(n1); //Initialize Left Array
+    const R = new Array(n2); //Initialize Right Array
+
+    // Now we loop iteratively through both arrays and populate them left to right:
+
+    for (i = 0; i < n1; i++) {
+        L[i] = arr[left + i]; // Populates all Left Array Items
+    }
+
+    for (j = 0; j < n2; j++) {
+        R[j] = arr[mid + 1 + j]; // Populates all Right Array Items
+    }
+
+    let i = 0, j = 0; // Reset Counter Values
+    let k = left; //Get Left value
+
+    while (i < n1 && j < n2) {    // while both iterating values for placeholder variables are below or equal to the total elements in the array, we proceed
+        if (L[i] <= R[j]) {       // with this operation of adding the left element first if its greater than the right, and we increment each array respectively.
+            arr[k] = L[i];
+            i++;
+        } else {
+            arr[k] = R[i];
+            j++
+        }
+        k++;
+    }
+
+    while (i < n1) {       // After our comparative iterations, we just resume adding whichever elements we need to the new merged array, in order of
+        arr[k] = L[i];     // Ascending to Descending, (i then j).
+        i++;
+        k++;
+    }
+
+    while (j < n2) {
+        arr[k] = R[i];
+        j++;
+        k++;
+    }
+}
+
+```
+
+# Kadane's Algorithm #
 
 Kadane's algorithm returns the maximum sum of a contiguous subarray. This means an `array nested within an array`. This algorithm is taking a subset of integer
 values within the array, testing them against each other to find the subarray with the maximum sum instide of it.
