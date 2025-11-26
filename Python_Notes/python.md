@@ -94,3 +94,56 @@ def quickSort(arr):
 
 
 ```
+
+# BFS (Breadth-First Search) #
+
+This is a search algorithm with runtime complexity O(V + E) that searches every possible node adjecent to the current discovered nodes before completing all teraversal operations. This search algorithm isn't incredibly efficient, requiring a large number of traversals before reaching a goal. Possible applications of BFS could be web crawlers, Network Security, Social connections in social media apps, etc.
+
+```python
+
+from collections import defaultdict
+
+class Graph:
+    __init__(self):
+        self.graph = defaultdict(list) # init for self with a defaultdict library list initialized
+
+    def addEdge(self, u, v):
+        self.graph[u].append(v) # append a node to another node.
+
+    def BFS(self, s):
+
+        visited = [False] * (max(self.graph) + 1) # set all nodes to false
+
+        queue = [] # empty queue init
+
+        queue.append[s] # append root node from search
+        visited[s] = True # Change its state
+
+        while queue: # while a queue exists
+
+            s = queue.pop[0] # pop the first item in the queue
+            print(s, end=" ") # neat print
+
+            for i in self.graph[s]: # loops through all objects currently in the graph's queue, changing the truth value accordingly.
+                if not visited[i]:
+                    queue.append(i)
+                    visited[i] = True
+
+
+```
+# Depth-First Search #
+
+Depth First Search algorithm is a search algorithm, similar to Breadth first search with a runtime complexity of O(V + E). The difference is, on average, depth first search goes through less vertices and edges on average, so it will have a shorter runtime despite the same complexity. This algorithm works by choosing a starting node and a goal node, traversing through the least amount of nodes by searching with depth first. 
+
+```python
+
+from collections import defaultdict
+
+class Graph:
+    __init__(self):
+        self.graph = defaultdict(list)
+
+    addEdge(self, v, u):
+        self.graph[v].append(u)
+
+```
