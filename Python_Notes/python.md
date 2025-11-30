@@ -140,10 +140,282 @@ Depth First Search algorithm is a search algorithm, similar to Breadth first sea
 from collections import defaultdict
 
 class Graph:
-    __init__(self):
+    def __init__(self):
         self.graph = defaultdict(list)
 
-    addEdge(self, v, u):
+    def addEdge(self, v, u):
         self.graph[v].append(u)
 
+    def DFSUtil(self, v, visited):
+
+        visited.add(v)
+        print(v, end=' ')
+
+        for i in self.graph[v]:
+            if i not in visited:
+                self.DFSUtil(i, visited)
+
+    def DFS(self, v):
+
+        visited = set()
+        self.DFSUtil(v, visited)
 ```
+
+# Two Sums #
+
+```python
+
+def TwoSums(nums, target):
+    map = {}
+    for i, num in enumerate(nums):
+        complement = num - target
+        if complement in map:
+            return [map[complement], i]
+        map[num] = i
+
+nums = [2, 7, 11, 15]
+target = 26
+print(TwoSums(nums, target))  # Output: [0, 1]
+
+```
+# Longest Palindrome in substring #
+
+```python
+
+def longestPalindrome(self, s):
+    if not s:
+        return ""
+    start = 0
+    end = 0
+    for i in range(len(s)):
+        l1, r1 = self.expand(s, i, i)
+        if r1 - l1 > end - start:
+            start, end = l1, r1
+        l2, r2 = self.expand(s, i, i + 1)
+        if r2 - l2 > end - start:
+            start, end = l2, r2
+    return s[start:end + 1]
+def expand(self, s, left, right):
+    while left >= 0 and right < len(s) and s[left] == s[right]:
+        left -= 1
+        right += 1
+    return left + 1, right - 1
+
+
+```
+# Contains duplicate #
+
+```python
+
+class Solution(object):
+    def containsDuplicate(self, nums):
+        seen = set()
+        for x in nums:
+            if x in seen:
+                return True
+            seen.add(x)
+        return False
+
+```
+
+# Majority Element
+
+```python
+
+    def majorityElement(self, nums):
+        candidate = None
+        count = 0
+
+        for i in nums:
+            if count == 0:
+                candidate = i
+            
+            if i == candidate:
+                count +=1
+            else:
+                count -=1
+        return candidate
+
+```
+
+# Is Anagram #
+
+```python
+
+    def isAnagram(self, s, t):
+        if len(s) != len(t):
+            return False
+
+        mp1 = {}
+        mp2 = {}
+
+        for i in s:
+            mp1[i] = mp1.get(i, 0) + 1
+
+        for j in t:
+            mp2[j] = mp2.get(j, 0) + 1
+
+        return mp1 == mp2
+
+```
+
+# Length of the longest substring without repeating characters #
+
+```python
+
+    def lengthOfLongestSubstring(self, s):
+        l = r = bestLen = 0
+        seen = set()
+        while r < len(s):
+            if s[r] not in seen:
+                seen.add(s[r])
+                bestLen = max(bestLen, r - l + 1)
+                r += 1
+            else:
+                seen.discard(s[l])
+                l += 1
+        return bestLen
+
+```
+# Longest possible palindrome in substring
+
+```python
+
+    def longestPalindrome(self, s):
+        odd = set()
+        len = 0
+
+        for ch in s:
+            if ch in odd:
+                odd.remove(ch)
+                len += 2
+            else: 
+                odd.add(ch)
+        
+        if odd:
+            len += 1
+
+        return len
+
+```
+
+# Rotting Oranges #
+
+```python
+
+from collections import deque
+
+class Solution(object):
+    def orangesRotting(self, grid):
+
+        rows = len(grid)
+        columns = len(grid[0])
+
+        q = deque()
+        visited = set()
+        minutes = fresh = 0 
+
+        for r in range(rows):
+            for c in range(columns):
+                if grid[r][c] == 2:
+                    visited.add((r, c))
+                    q.append((r, c))
+                elif grid[r][c] == 1:
+                    fresh += 1
+
+        while q and fresh > 0:
+            for _ in range(len(q)):
+                r, c = q.popleft()
+
+                for dr, dc in [(1,0), (-1,0), (0,1), (0,-1)]:
+                    nr, nc = r + dr, c + dc
+
+                    if (0 <= nr < rows and 0 <= nc < columns and (nr, nc) not in visited and grid[nr][nc] == 1):
+                
+                        if grid[nr][nc] == 1:
+                            grid[nr][nc] = 2
+                            fresh -= 1
+                    
+                        q.append((nr, nc))
+                        visited.add((nr, nc))
+
+            minutes += 1
+        if fresh == 0:
+            return minutes
+        else:
+            return -1
+        
+
+```
+
+# Number of Islands #
+
+```python
+
+from collections import deque
+
+def numIslands(grid):
+    row = len(grid)
+    col = len(grid[0])
+    islands = 0
+    visited = set()
+
+    def BFS(StartR, StartC):
+        q = deque()
+        visited.add((StartR, StartC))
+        q.append((StartR, StartC))
+
+        while q:
+            r, c = q.popleft()
+            
+            for dr, dc in [(1,0), (-1,0), (0,1), (0,-1)]:
+                nr, nc = r + dr, c + dc
+
+                if 0 <= nr < row and 0 <= nc < col and (nr, nc) not in visited and grid[nr][nc] == 1:
+                    visited.add((nr, nc))
+                    q.append((nr, nc))
+            
+    for r in range(rows):
+        for c in range(col):
+            if grid[r][c] == 1 and (r, c) not in visited:
+                BFS(r, c)
+                islands += 1
+    
+    return islands
+
+
+```
+
+# Walls and Gates #
+
+```python
+from collections import deque
+
+def wallsAndGates(room):
+    if not room or not room[0]:
+        return
+
+    q = deque()
+    rows, cols = len(room), len(room[0])
+
+    INF = 999999999
+
+    for r in range(rows):
+        for c in range(cols):
+            if room[r][c] == 0:
+                q.append((r, c))
+    
+    directions = [(1,0), (-1,0), (0,1), (0,-1)]
+
+    while q:
+        r, c = q.popleft()
+
+        for dr, dc in directions:
+            nr, nc = r + dr, c + dc
+
+        if 0 <= nr < rows and 0 <= nc < cols and room[nr][nc] == INF:
+            q.append((nr, nc))
+            room[nr][nc] = room[r][c] + 1
+
+```
+

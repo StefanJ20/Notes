@@ -1,43 +1,11 @@
-from collections import defaultdict
+def TwoSums(nums, target):
+    map = {}
+    for i, num in enumerate(nums):
+        complement = num - target
+        if complement in map:
+            return [map[complement], i]
+        map[num] = i
 
-class Graph:
-    def __init__(self):
-        self.graph = defaultdict(list)
-
-    def addEdge(self, u, v):
-        self.graph[u].append(v)
-
-    def BFS(self, s):
-        queue = []
-        visited = [False] * (max(self.graph) + 1)
-
-        queue.append(s)
-        visited[s] = True
-
-        while queue:
-            s = queue.pop(0)
-            print(s, end=" ")
-
-            for i in self.graph[s]:
-                if not visited[i]:
-                    queue.append(i)
-                    visited[i] = True
-
-    def printGraph(self):
-        for i in self.graph:
-            print(f"{i} -> {' '.join(map(str, self.graph[i]))}")
-
-g = Graph()
-g.addEdge(0, 1)
-g.addEdge(0, 2)
-g.addEdge(1, 2)
-g.addEdge(2, 0)
-g.addEdge(2, 3)
-g.addEdge(3, 3)
-g.addEdge(4, 5)
-
-print("Following is Depth First Traversal (starting from vertex 2)")
-g.BFS(2)
-
-print("\n\nGraph representation:")
-g.printGraph()
+nums = [2, 7, 11, 15]
+target = 26
+print(TwoSums(nums, target))  # Output: [0, 1]
