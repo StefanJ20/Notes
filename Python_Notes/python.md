@@ -261,6 +261,8 @@ class Solution(object):
 
 # Length of the longest substring without repeating characters #
 
+
+
 ```python
 
     def lengthOfLongestSubstring(self, s):
@@ -278,6 +280,8 @@ class Solution(object):
 
 ```
 # Longest possible palindrome in substring
+
+The logic here is O(n), iterating once through every element rather than finding a palindrome directly. Intialize set, length, and loop through the string for unique characters. In the character exists, remove it, increment len by 2, else we just add the character to the set. If anything remains in the set (odd palindrome) we increment it by 1 at the end. Return the length.
 
 ```python
 
@@ -300,6 +304,8 @@ class Solution(object):
 ```
 
 # Rotting Oranges #
+
+Also utilizing BFS algorithm, this time queueing rotted oranges and initializing ripe ones. we iterate with  `for _ in range(len(q))` incrementing minutes after every for loop.
 
 ```python
 
@@ -350,6 +356,8 @@ class Solution(object):
 
 # Number of Islands #
 
+Logic follows BFS search, starting at a specific row and column and moves through finding neighboring islands. 
+
 ```python
 
 from collections import deque
@@ -388,6 +396,8 @@ def numIslands(grid):
 
 # Walls and Gates #
 
+Approach without using a set, just the constant representing a room. Logic follows BFS.
+
 ```python
 from collections import deque
 
@@ -420,6 +430,8 @@ def wallsAndGates(room):
 ```
 
 # Group Anagrams #
+
+3 Things to keep in mind here: Sorting them with the key, appending the key to groups, returning a list of all of groups values.
 
 ```python 
 
