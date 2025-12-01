@@ -163,6 +163,8 @@ class Graph:
 
 # Two Sums #
 
+This finds two sums in an array that adds up to a target number using the enumerate function in python. We just simply find the complement, check if its in the map, if it is we return it, if not we increment the map with the value at i.
+
 ```python
 
 def TwoSums(nums, target):
@@ -179,6 +181,8 @@ print(TwoSums(nums, target))  # Output: [0, 1]
 
 ```
 # Longest Palindrome in substring #
+
+This finds the largest palindrome contained within a substring. We define a function expand to expand through the array from the center. We then use it to calculate odd or even palindromes in the string.
 
 ```python
 
@@ -205,6 +209,8 @@ def expand(self, s, left, right):
 ```
 # Contains duplicate #
 
+Very straightforward. We just use a set to keep track of all the unique characters we've seen so far, if there's a non-unique character we return True.
+
 ```python
 
 class Solution(object):
@@ -219,6 +225,8 @@ class Solution(object):
 ```
 
 # Majority Element
+
+Basically we iterate through every item in the array, create a candidate, remove or add to that candidate depending on how many exist. This logic simply iterates through every item one by one to see which element has the most elements. 
 
 ```python
 
@@ -239,6 +247,8 @@ class Solution(object):
 ```
 
 # Is Anagram #
+
+We check the edge case first where the strings are the same length. because if they're not we know the strings aren't anagrams. 
 
 ```python
 
@@ -261,7 +271,7 @@ class Solution(object):
 
 # Length of the longest substring without repeating characters #
 
-
+This uses a set to keep track of the unique elements in a string, incrememnts the right value and best length, if the element is in the set we remove it and increment left. This uses a max function to determine the best length, if it should remain that value or be replaced with `r - l + 1`.
 
 ```python
 
@@ -449,3 +459,22 @@ def groupAnagram(self, strs):
 
 ```
 
+# Kadane's Algorithm #
+
+Already did in JavaScript, but python variant is just as useful to know. Finds the maximum sum of a contiguous subarray. 
+
+```python
+
+def kadanesAlgo(self, nums):
+
+    currentSum = nums[0]
+    maxSum = nums[0]
+
+    for x in nums[1:]:
+        currentSum = max(x, currentSum + x)
+        maxSum = max(maxSum, currentSum)
+
+    return maxSum
+
+
+```
