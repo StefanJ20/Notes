@@ -478,3 +478,208 @@ def kadanesAlgo(self, nums):
 
 
 ```
+
+# Course Schedule #
+
+This problem utilizes a DFS algorithm to search for any loops in the graph. If they exist, we return false, it not we return true.
+
+```python
+
+from collections import defaultdict
+
+def CanFinish(numCourses, prerequisites):
+
+    graph = defaultdict(list) # Create a adjacency list using defaultdict import.
+
+    for course, prereq in prerequisites:  # The same exact step process used in a base DFS algorithm
+        graph[prereq].append(course)
+
+    state = [0] * numCourses
+
+    def DFS(node):
+        if state[node] == 1:
+            return False # Cycle Located
+        if state[node] == 2:
+            return True # No cycle
+
+        state[node] = 1 # Mark as visited
+
+        for i in graph[node]:
+            if not DFS(i):
+                return False
+        
+        state[node] = 2 # Mark as fully processed
+        return True
+
+    for c in range(numCourses): # Now we loop through the number of courses given to us.
+        if not DFS(c):
+            return False
+
+    return True
+
+```
+
+# Shortest Diagonizable Path Binary Matrix #
+
+This utilizes a BFS algorithm, although different from the problem prior, we have a different list of directions because we are allowed to move diagonably for this problem.
+
+```python
+
+from collections import deque
+
+def shortestPathBinaryMatrix(grid):
+    
+    if not grid or not grid[0]:
+        return -1
+
+    rows = len(grid)
+    cols = len(grid[0])
+
+    q = deque()
+    visited = set()
+
+    if grid [0][0] != 0 or grid[rows-1][cols-1] != 0:
+        return -1
+    
+    q.append((0, 0, 1)) # Third property is the distance
+    visited.add((0, 0))
+
+
+    directions = [(1,0), (-1,0), (0,1), (0,-1), (1,1), (-1,1), (1,-1), (-1,-1)] # Different directions set because this search expands vertically
+
+    while q:
+        r, c, dist = q.popleft()
+
+        if r == rows - 1 and c == cols - 1:
+            return dist
+
+        for dr, dc in directions:
+            nr, nc = r + dr, c + dc
+
+            if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] == 0 and (nr, nc) not in visited:
+                q.append((nr, nc, dist + 1))
+                visited.add((nr, nc))
+
+    return -1
+
+```
+
+# Length of Longest Unique Substring #
+
+```python
+
+def lengthOfLongestSubstring(self, s):
+
+    l = r = bestLen = 0
+    seen = set()
+    if len(s) == 0: return 0
+    while r < len(s):
+        if s[r] not in seen:
+            seen.add(s[r])
+            bestLen = max(bestLen, r - l + 1)
+            r += 1
+        else:
+            seen.discard(s[l])
+            l += 1
+    return bestLen
+
+
+```
+
+# Binary Search Insert #
+
+```python
+
+def searchInsert(nums: list[int], target: int) -> int:
+    low = 0
+    high = len(nums) - 1
+    
+    while low <= high:
+        mid  = low + (high - low) // 2
+
+        if nums[mid] < target:
+            low = mid + 1
+        elif nums[mid] > target:
+            high = mid - 1
+        else:
+            return mid
+    
+    return low
+
+```
+
+# Session Logs #
+
+```python
+
+def computeSessionTimes(logs: list[str]) -> dict:
+
+    parsed = []
+
+    for log in logs:
+        parts = log.split()
+
+        if len(parts) != 3:
+            continue
+
+        timestamp, user, action = parts
+
+        try:
+            t = int(timestamp)
+            except ValueError:
+                continue
+        
+        if action not in ("login", "logout"):
+            continue
+
+    parsed.append((t, user, action))
+
+    parsed.sort(key=lambda x : x[0])
+
+    last_login = {}
+    total_time = {}
+
+    for timestamp, user, action in parsed:
+        if action == "login":
+            
+            last_login[user] = timestamp
+
+        else:
+            if user in last_login:
+                start = last_login.pop(user)
+                session = timestamp - start 
+                if session >= 0:
+                    total_time[user] = total_time.get(user, 0) + session
+    
+    return total_time
+
+
+```
+
+# Max Sum of Subarray with integer K #
+
+```python
+
+def maxSubArrayLen(nums: list[int], k: int) -> int:
+
+    cur_sum = 0
+    best_len = 0
+    unique = {}
+
+    for i, num in enumerate(nums):
+        cur_sum += num[i]
+        needed = cur_sum - k
+        if cur_sum == k:
+            max_len = max(max_len, i + 1)
+
+        if needed in unique:
+            length = i - unique[needed]
+            if length > max_len:
+                max_len = length
+        
+        if cur_sum not in unique:
+            unique[cur_sum] = i
+    
+    return max_len
+
+```
