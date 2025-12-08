@@ -46,7 +46,7 @@ urlpatterns = [
 ]
 ```
 
-# create credentials in provider console #
+# Create Credentials in Provider Console #
 
 For Google as an example:
     - Go to Google Cloud Console.
@@ -74,7 +74,8 @@ Redirect to the admin url, you'll now see:
     - Domain: localhost:8000
     - Name: Localhost
 
-# Go to Social applications → Add. #
+# Go to Social applications → Add #
+
     - Provider: Google
     - Name: Google OAuth
     - Client id: <paste from Google console>
