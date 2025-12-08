@@ -36,7 +36,7 @@ We dont have to, but we can make our own login / logout urls:
 LOGIN_REDIRECT_URL = "/"
 ACCOUNT_LOGOUT_REDIRECT_URL = "/"
 ```
-Add this to your url patterns in the main directory containing your admins url.
+# url patterns in the admins url Dir #
 
 ```python
 urlpatterns = [
@@ -45,7 +45,7 @@ urlpatterns = [
 ]
 ```
 
-Now, we have to create credentials in provider console.
+# create credentials in provider console #
 
 For Google as an example:
     - Go to Google Cloud Console.
@@ -54,12 +54,14 @@ For Google as an example:
     - Choose Web application.
     Set Authorized redirect URI to your callback URL.
 
-Run migrations and create superuser:
+# Run migrations and create superuser #
 
 `python manage.py migrate`
 `python manage.py createsuperuser`
 
-Start your server, redirect to the admin url, you'll now see:
+# Start your server #
+
+Redirect to the admin url, you'll now see:
 
     - Sites
     - Social accounts
