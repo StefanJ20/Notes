@@ -19,6 +19,7 @@ INSTALLED_APPS = [
 ]
 
 ```
+# Site ID #
 
 We also have to make sure to set a site ID with `SITE_ID = 1` in settings.py.
 We also need to add authentication backends in settings.py.
@@ -36,7 +37,7 @@ We dont have to, but we can make our own login / logout urls:
 LOGIN_REDIRECT_URL = "/"
 ACCOUNT_LOGOUT_REDIRECT_URL = "/"
 ```
-# url patterns in the admins url Dir #
+# Url patterns in the Admins Url Dir #
 
 ```python
 urlpatterns = [
